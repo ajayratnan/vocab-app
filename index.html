@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#C90000" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="manifest" href="manifest.json" />
+    <title>Vocabulary Builder</title>
+  </head>
+  <body data-page="index">
+    <header>
+      <img src="public/logo.png" alt="Logo" class="logo" />
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="flashcards.html">Learn</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </header>
+    <main>
+      <h1>Welcome to the Vocabulary Builder</h1>
+      <p>Improve your vocabulary with active recall flash cards.</p>
+      <div style="margin-top: 1.5rem; width: 100%; max-width: 400px;">
+        <input
+          type="text"
+          id="username-input"
+          placeholder="Enter your name"
+          style="width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; margin-bottom: 1rem;"
+        />
+        <button class="button" id="start-btn">Start Learning</button>
+      </div>
+    </main>
+    <script src="script.js" defer></script>
+  </body>
+</html>
