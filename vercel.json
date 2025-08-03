@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "index.html",            "use": "@vercel/static" },
+    { "src": "flashcards.html",       "use": "@vercel/static" },
+    { "src": "dashboard.html",        "use": "@vercel/static" },
+    { "src": "admin.html",            "use": "@vercel/static" },
+    { "src": "manifest.json",         "use": "@vercel/static" },
+    { "src": "service-worker.js",     "use": "@vercel/static" },
+    { "src": "styles.css",            "use": "@vercel/static" },
+    { "src": "script.js",             "use": "@vercel/static" },
+    { "src": "data/*.csv",            "use": "@vercel/static" },
+    { "src": "public/**/*",           "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
+}
