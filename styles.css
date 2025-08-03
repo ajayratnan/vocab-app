@@ -1,150 +1,38 @@
-/* 1. Import a clean, modern font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-
+/* … your existing variables … */
 :root {
-  /* Core palette */
-  --primary: #C90000;
-  --accent: #FF6F61;
-  --bg: #F5F5F7;
-  --card-bg: #FFFFFF;
-  --text: #333333;
-  --muted: #555555;
-
-  /* Elevation and transitions */
-  --shadow-sm: 0 2px 6px rgba(0,0,0,0.08);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.12);
-  --radius: 12px;
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* add a bit more spacing for the header */
+  --header-height: 64px;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  color: var(--text);
-  background: var(--bg);
-  line-height: 1.6;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* 2. Header & Layout */
+/* Header flex layout */
 header {
-  background: #FFF;
-  box-shadow: var(--shadow-sm);
-  padding: 1rem 2rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  padding: 0 2rem;
+  height: var(--header-height);
+  gap: 1.5rem;
 }
 
-header img { height: 40px; }
-
-nav a {
+/* New Set selector styling */
+.set-selector {
   margin-left: auto;
-  color: var(--text);
-  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-weight: 500;
-  transition: color .2s var(--ease);
 }
-nav a:hover { color: var(--primary); }
-
-/* 3. Card styling */
-.card {
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
-  padding: 2rem;
-  margin: 2rem auto;
-  max-width: 400px;
-  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
-}
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.16);
-}
-
-/* Flashcard word */
-.flash-word {
-  font-size: 1.75rem;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-/* Options */
-.option {
-  background: #FFF;
+#setSelect {
+  padding: 0.4rem 0.6rem;
   border: 2px solid #EEE;
   border-radius: var(--radius);
-  padding: 0.75rem 1rem;
-  margin-bottom: 0.75rem;
+  background: #FFF;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: background .2s var(--ease), border-color .2s var(--ease), box-shadow .2s var(--ease);
-  display: flex;
-  align-items: center;
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
 }
-.option:hover {
-  background: #FAFAFA;
+#setSelect:hover,
+#setSelect:focus {
+  border-color: var(--primary);
   box-shadow: var(--shadow-sm);
-}
-.option.correct {
-  border-color: #4CAF50;
-  background: #E8F5E9;
-}
-.option.incorrect {
-  border-color: #F44336;
-  background: #FFEBEE;
-}
-
-/* 4. Buttons */
-.button {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  color: #FFF;
-  border: none;
-  border-radius: var(--radius);
-  padding: 0.75rem 1.5rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: opacity .2s var(--ease), transform .2s var(--ease);
-  text-decoration: none;
-  text-align: center;
-}
-.button:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-}
-
-/* 5. Progress Bar */
-.progress-container {
-  background: #EEE;
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin: 1rem auto;
-  max-width: 400px;
-}
-.progress-bar {
-  height: 8px;
-  background: var(--primary);
-  transition: width .4s var(--ease);
-}
-
-/* 6. Motivational message */
-.message {
-  font-style: italic;
-  color: var(--muted);
-  text-align: center;
-  margin-top: 1rem;
-  opacity: 0;
-  animation: fadeIn 0.6s forwards;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
+  outline: none;
 }
