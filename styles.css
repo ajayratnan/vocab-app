@@ -1,52 +1,242 @@
-/* ———————————————————————————————— */
-/* Header / Logo Fixes */
-/* ———————————————————————————————— */
+/* styles.css - Complete redesign for Vocabulary Builder PWA */
 
-/* Ensure header sticks, spaces out items, and has a white backdrop */
+/* 1. Import modern typeface */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Core color palette */
+  --primary: #C90000;
+  --accent: #FF6F61;
+  --background: #F5F5F7;
+  --card-bg: #FFFFFF;
+  --text: #333333;
+  --muted: #666666;
+  
+  /* Shadows & radius */
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --radius: 10px;
+  
+  /* Transitions */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 2. Global resets & typography */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  background: var(--background);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* Utility containers */
+.container {
+  width: min(100% - 2rem, 800px);
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+/* 3. Header styling */
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
-  background: var(--card-bg);      /* white by default */
-  box-shadow: var(--shadow-sm);    /* subtle drop shadow */
+  padding: 1rem 1.5rem;
+  background: var(--card-bg);
+  box-shadow: var(--shadow-sm);
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
-/* Constrain the logo height so it never blows up */
-header img.logo {
-  height: 40px;         /* or whatever fits your design */
-  width: auto;          /* keep aspect ratio */
-  flex-shrink: 0;       /* prevents shrinking below 40px */
-  margin-right: 1rem;   /* space between logo and title */
+header .logo {
+  height: 40px;
+  width: auto;
 }
 
-/* Style the page title nicely next to it */
 header h1 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--text);
-  margin: 0;
+  margin-left: 0.75rem;
 }
 
-/* Keep your set selector on the right */
+/* Set selector */
 .set-selector {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+#setSelect {
+  padding: 0.4rem 0.6rem;
+  border: 2px solid #EAEAEA;
+  border-radius: var(--radius);
+  background: var(--background);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+#setSelect:hover, #setSelect:focus {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm);
+  outline: none;
+}
+
+/* 4. Flashcard layout */
+.flashcard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: 2rem;
+  margin: 2rem auto;
+  width: min(100% - 2rem, 420px);
+  position: relative;
+  perspective: 1000px;
+}
+
+.flash-word {
+  font-size: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.option {
+  background: var(--background);
+  border: 2px solid #EEE;
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background .2s var(--ease), transform .2s var(--ease);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 3.5rem;
+}
+.option:hover {
+  background: #FAFAFA;
+  transform: translateY(-2px);
+}
+.option.correct {
+  border-color: #4CAF50;
+  background: #E8F5E9;
+}
+.option.incorrect {
+  border-color: #F44336;
+  background: #FFEBEE;
+}
+
+/* Details flip container */
+.details {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.4;
+  margin-top: 1rem;
+  display: none;
+}
+.details.visible {
+  display: block;
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* 5. Buttons */
+.button, .next-btn {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #FFF;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity .2s var(--ease), transform .2s var(--ease);
+  text-align: center;
+  margin: 0 auto;
+}
+.next-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* 6. Progress bar */
+.progress-container {
+  width: 100%;
+  background: #EAEAEA;
+  border-radius: var(--radius);
+  overflow: hidden;
+  height: 8px;
+  margin-top: 1.5rem;
+}
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: var(--primary);
+  transition: width .4s var(--ease);
+}
+
+/* 7. Motivational message */
+.message {
+  font-style: italic;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 1rem;
+  opacity: 0;
+  animation: fadeIn 0.6s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* 8. Responsive tweaks */
+@media (max-width: 480px) {
+  .options { grid-template-columns: 1fr; }
+  .flashcard-container { width: calc(100% - 1.5rem); padding: 1rem; }
+}
+
+/* 9. General form & tables (for dashboard & admin) */
+input[type="file"], input[type="text"], button {
+  font-family: inherit;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+thead {
+  background: var(--primary);
+}
+
+thead th {
+  color: #FFF;
+  padding: 0.75rem;
+  text-align: left;
   font-weight: 500;
 }
 
-/* Responsive tweaks */
-@media (max-width: 600px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-  .set-selector {
-    margin-left: 0;
-  }
+tbody tr:nth-child(even) { background: #F9F9F9; }
+
+tbody td {
+  padding: 0.65rem;
+  border-bottom: 1px solid #EEE;
 }
