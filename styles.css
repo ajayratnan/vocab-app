@@ -1,38 +1,52 @@
-/* … your existing variables … */
-:root {
-  /* add a bit more spacing for the header */
-  --header-height: 64px;
-}
+/* ———————————————————————————————— */
+/* Header / Logo Fixes */
+/* ———————————————————————————————— */
 
-/* Header flex layout */
+/* Ensure header sticks, spaces out items, and has a white backdrop */
 header {
   display: flex;
   align-items: center;
-  padding: 0 2rem;
-  height: var(--header-height);
-  gap: 1.5rem;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: var(--card-bg);      /* white by default */
+  box-shadow: var(--shadow-sm);    /* subtle drop shadow */
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-/* New Set selector styling */
+/* Constrain the logo height so it never blows up */
+header img.logo {
+  height: 40px;         /* or whatever fits your design */
+  width: auto;          /* keep aspect ratio */
+  flex-shrink: 0;       /* prevents shrinking below 40px */
+  margin-right: 1rem;   /* space between logo and title */
+}
+
+/* Style the page title nicely next to it */
+header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+
+/* Keep your set selector on the right */
 .set-selector {
-  margin-left: auto;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-weight: 500;
 }
-#setSelect {
-  padding: 0.4rem 0.6rem;
-  border: 2px solid #EEE;
-  border-radius: var(--radius);
-  background: #FFF;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
-}
-#setSelect:hover,
-#setSelect:focus {
-  border-color: var(--primary);
-  box-shadow: var(--shadow-sm);
-  outline: none;
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .set-selector {
+    margin-left: 0;
+  }
 }
