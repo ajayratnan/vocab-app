@@ -1,208 +1,150 @@
-/*
-  Global styles for the Vocabulary Builder application.
-  Use CSS variables to define the colour palette and make it easy to tweak the look and feel.
-*/
+/* 1. Import a clean, modern font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 :root {
-  --primary-color: #C90000;
-  --background-color: #f9f9f9;
-  --card-bg: #ffffff;
-  --correct-color: #4caf50;
-  --incorrect-color: #f44336;
-  --text-color: #333333;
-  --muted-color: #777777;
+  /* Core palette */
+  --primary: #C90000;
+  --accent: #FF6F61;
+  --bg: #F5F5F7;
+  --card-bg: #FFFFFF;
+  --text: #333333;
+  --muted: #555555;
+
+  /* Elevation and transitions */
+  --shadow-sm: 0 2px 6px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.12);
+  --radius: 12px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  background: var(--background-color);
-  color: var(--text-color);
+  font-family: 'Poppins', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+/* 2. Header & Layout */
 header {
+  background: #FFF;
+  box-shadow: var(--shadow-sm);
+  padding: 1rem 2rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  background: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-header img.logo {
-  height: 40px;
-}
-
-nav {
-  display: flex;
   gap: 1rem;
 }
+
+header img { height: 40px; }
 
 nav a {
-  color: var(--primary-color);
+  margin-left: auto;
+  color: var(--text);
   text-decoration: none;
   font-weight: 500;
+  transition: color .2s var(--ease);
 }
+nav a:hover { color: var(--primary); }
 
-nav a:hover {
-  text-decoration: underline;
-}
-
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1rem;
-}
-
-.button {
-  background: var(--primary-color);
-  color: #ffffff;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s ease;
-  text-align: center;
-}
-
-.button:hover {
-  background: #a30000;
-}
-
+/* 3. Card styling */
 .card {
   background: var(--card-bg);
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  width: 100%;
-  max-width: 480px;
-  margin: 1rem 0;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 400px;
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.16);
 }
 
-.card-title {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.options {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.option {
-  background: #f0f0f0;
-  border: 1px solid #dddddd;
-  border-radius: 6px;
-  padding: 0.75rem;
-  cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
-  user-select: none;
-}
-
-.option:hover {
-  background: #e8e8e8;
-}
-
-.option.correct {
-  background: var(--correct-color);
-  color: #ffffff;
-  border-color: var(--correct-color);
-}
-
-.option.incorrect {
-  background: var(--incorrect-color);
-  color: #ffffff;
-  border-color: var(--incorrect-color);
-}
-
-.details {
-  margin-top: 1rem;
-  border-top: 1px solid #eeeeee;
-  padding-top: 1rem;
-  display: none;
-  font-size: 0.95rem;
-  line-height: 1.4;
-}
-
-.details.visible {
-  display: block;
-}
-
-.details .label {
+/* Flashcard word */
+.flash-word {
+  font-size: 1.75rem;
   font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
-.message {
-  margin-top: 1rem;
-  font-weight: bold;
+/* Options */
+.option {
+  background: #FFF;
+  border: 2px solid #EEE;
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  transition: background .2s var(--ease), border-color .2s var(--ease), box-shadow .2s var(--ease);
+  display: flex;
+  align-items: center;
+}
+.option:hover {
+  background: #FAFAFA;
+  box-shadow: var(--shadow-sm);
+}
+.option.correct {
+  border-color: #4CAF50;
+  background: #E8F5E9;
+}
+.option.incorrect {
+  border-color: #F44336;
+  background: #FFEBEE;
+}
+
+/* 4. Buttons */
+.button {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #FFF;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity .2s var(--ease), transform .2s var(--ease);
+  text-decoration: none;
   text-align: center;
 }
-
-.dashboard {
-  width: 100%;
-  max-width: 600px;
+.button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
 }
 
-.dashboard-table {
-  width: 100%;
-  border-collapse: collapse;
+/* 5. Progress Bar */
+.progress-container {
+  background: #EEE;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 1rem auto;
+  max-width: 400px;
+}
+.progress-bar {
+  height: 8px;
+  background: var(--primary);
+  transition: width .4s var(--ease);
+}
+
+/* 6. Motivational message */
+.message {
+  font-style: italic;
+  color: var(--muted);
+  text-align: center;
   margin-top: 1rem;
+  opacity: 0;
+  animation: fadeIn 0.6s forwards;
 }
 
-.dashboard-table th,
-.dashboard-table td {
-  border: 1px solid #dddddd;
-  padding: 0.5rem;
-  text-align: left;
-}
-
-.dashboard-table th {
-  background: #f5f5f5;
-}
-
-.upload-section {
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: flex-start;
-  width: 100%;
-  max-width: 480px;
-}
-
-@media (max-width: 600px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  nav {
-    margin-top: 0.5rem;
-  }
-  .card {
-    padding: 1rem;
-  }
-  .button {
-    width: 100%;
-    text-align: center;
-  }
-  .upload-section {
-    max-width: 100%;
-  }
+@keyframes fadeIn {
+  to { opacity: 1; }
 }
