@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#C90000" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="manifest" href="manifest.json" />
+    <title>Vocabulary Builder - Dashboard</title>
+  </head>
+  <body data-page="dashboard">
+    <header>
+      <img src="public/logo.png" alt="Logo" class="logo" />
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="flashcards.html">Learn</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </header>
+    <main>
+      <h2>Your Progress</h2>
+      <p id="dashboard-summary"></p>
+      <div class="dashboard">
+        <table class="dashboard-table" id="dashboard-table"></table>
+      </div>
+      <button class="button" id="learn-again" style="margin-top: 1rem;">Learn Again</button>
+    </main>
+    <script src="script.js" defer></script>
+  </body>
+</html>
